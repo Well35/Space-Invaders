@@ -1,0 +1,7 @@
+invaders.e
+invaders.f
+invaders.g
+invaders.h
+*.filters
+.vs/
+x64/
