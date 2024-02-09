@@ -22,6 +22,9 @@ public:
     int instructions_read = 0;
 
     std::vector<uint8_t> memory; // ram
+
+    MachineIO io;
+    uint8_t port = 0;
 private:
 
     bool parity(uint8_t byte);
@@ -43,14 +46,50 @@ private:
     uint16_t pc; // program counter
 
     
-    bool int_enable; // Interupt enable flag
+    bool int_enable = 0; // Interupt enable flag
 
     CpuFlags flags;
-    MachineIO io;
+    
 
     int max_cycles_per_interupt = 16666;
     int current_cycles = 0;
 
+    
+
     std::ofstream outs;
+
+    // CPU instructions
+    void NOP();
+    void LXI(uint8_t& x, uint8_t& y, uint8_t byte1, uint8_t byte2);
+    void STAXB();
+    void STAXD();
+    void INX(uint8_t& x, uint8_t& y);
+    void INR(uint8_t& x);
+    void INRM();
+    void DEC(uint8_t& x);
+    void DECM();
+    void MVI(uint8_t& x, uint8_t& y);
+    void DAD(uint8_t& x, uint8_t& y);
+    void LDAX(uint8_t& x, uint8_t& y);
+    void MOV(uint8_t& x, uint8_t& y);
+    void MOVMR(uint8_t& x);
+    void RET();
+    void ORAR(uint8_t& x);
+    void ORI(uint8_t& x);
+    void ORAM();
+    void ANAR(uint8_t& x);
+    void ANI(uint8_t& x);
+    void ANAM();
+    void XRAR(uint8_t& x);
+    void XRI(uint8_t& x);
+    void XRAM();
+    void CALLIF(uint8_t& x, uint8_t& y, bool con);
+    void JUMPIF(uint8_t& x, uint8_t& y, bool con);
+    void SBI(uint8_t& x);
+    void ADDM();
+    void CMP(uint8_t& x);
+    void SUB(uint8_t& x);
+    void ADD(uint8_t& x);
+    void ADC(uint8_t& x);
 };
 

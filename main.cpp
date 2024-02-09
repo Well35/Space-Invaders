@@ -11,18 +11,17 @@ int main(int argc, char* args[]) {
 
     int start = SDL_GetTicks();
     int end = SDL_GetTicks();
-
     
     while (!cpu->quit) {
-        start = SDL_GetTicks();
-        if (start - end > 17) {
+        //start = SDL_GetTicks();
+       // if (start - end > 17) {
             end = start;
             cpu->emulate();
             cpu->interupt(0xCF);
             cpu->emulate();
             cpu->interupt(0xD7);
-            //gfx->draw(cpu);
-        }
+            gfx->draw(cpu);
+       // }
         cpu->input();
     }
     

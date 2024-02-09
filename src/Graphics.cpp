@@ -7,7 +7,7 @@ Graphics::Graphics() {
         SDL_Log("Could not initialize SDL subsystems! %s\n", SDL_GetError());
     }
 
-    window = SDL_CreateWindow("Space Invaders", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, window_width * scale, window_height * scale, 0);
+    window = SDL_CreateWindow("Space Invaders", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, window_height * scale, window_width * scale, 0);
     if (!window) {
         SDL_Log("Could not create SDL window %s\n", SDL_GetError());
     }
@@ -33,13 +33,13 @@ void Graphics::draw(const Cpu* cpu) {
             uint16_t byte_to_draw = vram_start_location + v + (j >> 3);
             uint16_t bit_to_check = j % 8; //
 
-            bool pixel = cpu->memory.at(byte_to_draw) & (1 << bit_to_check);
+            bool pixel = (cpu->memory.at(byte_to_draw) & (1 << bit_to_check)) != 0;
 
             if (pixel) SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
-            else SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+            else SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
 
             r.x = i * scale;
-            r.y = (256-j-1) * scale;
+            r.y = (256-j-1) * scale; //(256-i-1) * scale;
 
             SDL_RenderFillRect(renderer, &r);
         }

@@ -1,34 +1,32 @@
 #include "MachineIO.h"
 
-MachineIO::MachineIO() {
-
-}
+#include <iostream>
 
 uint8_t MachineIO::read(uint8_t x) {
-	if (x == 0x1) {
+	if (x == 0) {
+		return 1;
+	}
+	if (x == 1) {
 		return port1;
 	}
-	else if (x == 0x3) {
+	if (x == 3) {
 		return shift_result();
 	}
-	return 0u;
+	return 0;
 }
 
 void MachineIO::write(uint8_t x, uint8_t y) {
-	if (x == 0x2) {
+	if (x == 2) {
 		offset = y & 0x7;
 	}
-	else if (x == 0x3) {
-		port3 = y;
-	}
-	else if (x == 0x5) {
-		port5 = y;
-	}
-	else if (x == 0x4) {
-		shift_value = (shift_value >> 8) | (y << 8);
+	else if (x == 4) {
+		shift0 = shift1;
+		shift1 = y;
 	}
 }
 
 uint8_t MachineIO::shift_result() {
-	return ((shift_value >> (8 - offset)) & 0xFF);
+	uint16_t v = (shift1 << 8) | shift0;
+	return ((v >> (8 - offset)) & 0xff);
+	//return ((shift_value >> (8 - offset)) & 0xFF);
 }
