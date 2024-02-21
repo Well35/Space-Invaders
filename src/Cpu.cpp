@@ -587,6 +587,7 @@ void Cpu::print_cpu_data() {
     outs << "sp: " << std::hex << (sp << 0) << " pc: " << (pc << 0) << std::endl;
 }
 
+// Returns true if the amount of bits flipped on in a number is odd, and false if it is even
 bool Cpu::parity(uint8_t byte) {
     bool parity_table[] = {
       1, 0, 0, 1, 0, 1, 1, 0, 0, 1, 1, 0, 1, 0, 0, 1,

@@ -139,12 +139,14 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="src\Cpu.cpp" />
+    <ClCompile Include="src\Emulator.cpp" />
     <ClCompile Include="src\Graphics.cpp" />
     <ClCompile Include="src\MachineIO.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Cpu.h" />
     <ClInclude Include="src\CpuFlags.h" />
+    <ClInclude Include="src\Emulator.h" />
     <ClInclude Include="src\Graphics.h" />
     <ClInclude Include="src\MachineIO.h" />
   </ItemGroup>

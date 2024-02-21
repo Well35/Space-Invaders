@@ -18,6 +18,8 @@ Graphics::Graphics() {
     }
 }
 
+// The display is handled by using about 7K of RAM starting at 0x2400
+//   Each byte is used to draw 8 pixels based on each bit being on or off
 void Graphics::draw(const Cpu* cpu) {
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
     SDL_RenderClear(renderer);
