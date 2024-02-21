@@ -13,27 +13,17 @@ int main(int argc, char* args[]) {
     int end = SDL_GetTicks();
     
     while (!cpu->quit) {
-        //start = SDL_GetTicks();
-       // if (start - end > 17) {
+        start = SDL_GetTicks();
+        if (start - end > 17) {
             end = start;
             cpu->emulate();
             cpu->interupt(0xCF);
             cpu->emulate();
             cpu->interupt(0xD7);
             gfx->draw(cpu);
-       // }
+        }
         cpu->input();
     }
-    
-    /*
-    for (int i = 0; i < 23; i++) {
-        cpu->emulate();
-        cpu->interupt(0xCF);
-        cpu->emulate();
-        cpu->interupt(0xD7);
-        gfx->draw(cpu);
-    }
-    */
 
     std::cout << std::dec << "Instructions read: " << cpu->instructions_read - 1 << std::endl;
     cpu->print_cpu_data();

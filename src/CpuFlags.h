@@ -9,5 +9,4 @@ public:
     uint8_t p = 0; // parity flag 
     uint8_t cy = 0;// carry flag
     uint8_t ac = 0;// auxiliary carry flag
-    //uint8_t pad = 0;
 };

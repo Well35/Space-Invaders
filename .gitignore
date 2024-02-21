@@ -5,3 +5,4 @@ invaders.h
 *.filters
 .vs/
 x64/
+log.txt

@@ -26,7 +26,6 @@ void MachineIO::write(uint8_t x, uint8_t y) {
 }
 
 uint8_t MachineIO::shift_result() {
-	uint16_t v = (shift1 << 8) | shift0;
-	return ((v >> (8 - offset)) & 0xff);
-	//return ((shift_value >> (8 - offset)) & 0xFF);
+	uint16_t x = (shift1 << 8) | shift0;
+	return ((x >> (8 - offset)) & 0xFF);
 }

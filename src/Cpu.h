@@ -6,17 +6,17 @@
 #include <string>
 #include <fstream>
 
-// Intel 8080 CPU emulator
+// Intel 8080 CPU
 class Cpu {
 public:
     Cpu();
-    void emulate();
-    void emulate_cycle();
+    void emulate(); // emulate 16666 cycles of instructions (the amount the 8080 executes between each interupt)
+    void emulate_cycle(); // emulate a single instruction
     void load_rom(std::string rom_name, uint16_t start_pos); // Will load the space invaders rom to beginning of memory
-    void input();
-    void interupt(uint16_t intp);
+    void input(); // Handles SDL input using bit manipulation on PORT1 of the machine
+    void interupt(uint16_t intp); // Generates an interupt to the processor every 16666 cycles or after half the screen is drawn by the display
 
-    void print_cpu_data();
+    void print_cpu_data(); // Debug function
 
     bool quit = false;
     int instructions_read = 0;
@@ -24,10 +24,11 @@ public:
     std::vector<uint8_t> memory; // ram
 
     MachineIO io;
-    uint8_t port = 0;
 private:
 
     bool parity(uint8_t byte);
+
+    // CPU flag handling functions
     void add_flags(uint8_t x, uint8_t y, uint8_t carry);
     void sub_flags(uint8_t x, uint8_t y, uint8_t carry);
     void inr_flags(uint8_t x);
@@ -48,8 +49,7 @@ private:
     
     bool int_enable = 0; // Interupt enable flag
 
-    CpuFlags flags;
-    
+    CpuFlags flags; // Simple class that stores all flag data
 
     int max_cycles_per_interupt = 16666;
     int current_cycles = 0;
@@ -73,6 +73,7 @@ private:
     void LDAX(uint8_t& x, uint8_t& y);
     void MOV(uint8_t& x, uint8_t& y);
     void MOVMR(uint8_t& x);
+    void MOVRM(uint8_t& x);
     void RET();
     void ORAR(uint8_t& x);
     void ORI(uint8_t& x);

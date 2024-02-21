@@ -31,7 +31,7 @@ void Graphics::draw(const Cpu* cpu) {
         for (uint16_t j = 0; j < window_width; j++) {
             uint16_t v = 0x20 * i;
             uint16_t byte_to_draw = vram_start_location + v + (j >> 3);
-            uint16_t bit_to_check = j % 8; //
+            uint16_t bit_to_check = j % 8;
 
             bool pixel = (cpu->memory.at(byte_to_draw) & (1 << bit_to_check)) != 0;
 
