@@ -525,6 +525,7 @@ void Cpu::load_rom(std::string rom_name, uint16_t start_pos) {
     }
 }
 
+// input function should be moved to its own class in order to seperate tasks
 void Cpu::input() {
     SDL_Event event;
 
